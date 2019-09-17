@@ -90,7 +90,7 @@ std::list<Linha>* extrairArquivo(std::ifstream &file){
 	return lista;
 }
 
-
+//html>>ALL
 
 
 
