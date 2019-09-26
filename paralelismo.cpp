@@ -3,6 +3,24 @@
 #include <string>
 #include <thread>
 #include <list>
+#include <mpi.h>
+
+
+// Comando que inicializa o MPI;
+MPI_Init(NULL, NULL);
+
+// Obter o numero de processos;
+int world_size;
+MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+
+// Obter o rank de processos;
+int world_rank;
+MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+
+// Obter o nome do processador;
+char processor_name[MPI_MAX_PROCESSOR_NAME];
+int name_len;
+MPI_Get_processor_name(processor_name, &name_len);
 
 int num_threads = 2;
 int num_linhas = 0;
@@ -44,6 +62,9 @@ int main(){
 		x++;
 	}
 	delete[] ptr;		
+	
+	// Finalizar o MPI (não pode mais ser usado sem ser reinicializado);
+	MPI_Finalize();
 	
 }
 
